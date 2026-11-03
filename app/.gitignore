@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+
+instance/
+storage/
+logs/
+
+__pycache__/
+*.py[cod]
+
+.venv/
+venv/
+
+*.db
