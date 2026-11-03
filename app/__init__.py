@@ -19,7 +19,11 @@ def create_app(test_config=None):
     app.config["DATABASE"] = str(
         BASE_DIR / "instance" / "app.db"
     )
-
+    app.config["TRUSTED_HOSTS"] = [
+    "127.0.0.1",
+    "localhost",
+    "111.222.33.44",
+    ]
     app.config["STORAGE_DIR"] = str(
         BASE_DIR / "storage"
     )
