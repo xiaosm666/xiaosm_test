@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 load_dotenv()
+from werkzeug.middleware.proxy_fix import ProxyFix
 from pathlib import Path
 from .security import security_bp
 from flask import Flask, jsonify
@@ -84,4 +85,10 @@ def create_app(test_config=None):
     app.register_blueprint(admin_bp)
     app.register_blueprint(uploads_bp)
     configure_audit_logging(app)
+    app.wsgi_app = ProxyFix(
+    app.wsgi_app,
+    x_for=1,
+    x_proto=1,
+    x_host=1
+    )
     return app
